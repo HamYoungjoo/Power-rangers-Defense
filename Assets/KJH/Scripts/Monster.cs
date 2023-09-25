@@ -6,8 +6,8 @@ public class Monster : MonoBehaviour
     [SerializeField] private MonsterType monsterType;
 
     private Rigidbody2D _rigid;
-    public int curHealth { get; set; }
-    public int maxHealth { get; private set; }
+    public float curHealth { get; set; }
+    public float maxHealth { get; private set; }
     public int attackDamage { get; private set; }
     private float attackDelay;
     public float moveSpeed { get; set; }
@@ -30,21 +30,21 @@ public class Monster : MonoBehaviour
         switch (monsterType)
         {
             case MonsterType.Pink:
-                maxHealth = 200;
+                maxHealth = 200f;
                 attackDamage = 5;
                 attackDelay = 1f;
                 moveSpeed = 20f;
                 goldPerDeath = 5;
                 break;
             case MonsterType.Owlet:
-                maxHealth = 300;
+                maxHealth = 300f;
                 attackDamage = 15;
                 attackDelay = 2f;
                 moveSpeed = 10f;
                 goldPerDeath = 15;
                 break;
             case MonsterType.Dude:
-                maxHealth = 100;
+                maxHealth = 100f;
                 attackDamage = 10;
                 attackDelay = 0.5f;
                 moveSpeed = 30f;
