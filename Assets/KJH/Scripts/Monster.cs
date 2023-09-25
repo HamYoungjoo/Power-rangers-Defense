@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
@@ -8,14 +6,11 @@ public class Monster : MonoBehaviour
     [SerializeField] private MonsterType monsterType;
 
     private Rigidbody2D _rigid;
-
-    [HideInInspector]
-    public int curHealth;
-    [HideInInspector]
-    public int maxHealth;
-    private int attackDamage;
+    public int curHealth { get; set; }
+    public int maxHealth { get; private set; }
+    public int attackDamage { get; private set; }
     private float attackDelay;
-    private float moveSpeed;
+    public float moveSpeed { get; set; }
     private int goldPerDeath;
 
     private bool IsDeath;
@@ -60,10 +55,10 @@ public class Monster : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ApplyMove();        
+        MonsterMove();     
     }
 
-    private void ApplyMove()
+    private void MonsterMove()
     {
         if (IsDeath || IsAttacking)
         {
@@ -81,10 +76,11 @@ public class Monster : MonoBehaviour
         {
             IsAttacking = true;
             Debug.Log("타워 충돌");
-            GiveAttack();
+            MonsterGiveAttack();
         }
         else if (other.tag == "Earth")
         {
+            // TODO
             // gameObject.SetActive(false);
             // spawnmanager 에게 반환
             // 플레이어 피 감소
@@ -100,18 +96,23 @@ public class Monster : MonoBehaviour
         else return;
     }
 
-    private void GiveAttack()
+    private void MonsterGiveAttack()
     {
+        // TODO
         // attack anim
         // 데미지 주기 + attackDealy 만큼 대기
     }
 
-    public void TakeDamage(int _damage)
+    public void MosterTakeDamage(int _damage)
     {
         curHealth -= _damage;
-        // hit anim
+
+        // TODO
+        // Hit anim
+
         if (curHealth <= 0)
         {
+            // TODO
             // Death anim
             // player 골드 증가 (goldperkill)
             // Destroy - anim event
