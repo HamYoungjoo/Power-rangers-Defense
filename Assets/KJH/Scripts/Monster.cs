@@ -6,6 +6,8 @@ public class Monster : MonoBehaviour
     [SerializeField] private MonsterType monsterType;
 
     private Rigidbody2D _rigid;
+    private Animator _anim;
+
     public float curHealth { get; set; }
     public float maxHealth { get; private set; }
     public int attackDamage { get; private set; }
@@ -19,6 +21,7 @@ public class Monster : MonoBehaviour
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -63,10 +66,12 @@ public class Monster : MonoBehaviour
         if (IsDeath || IsAttacking)
         {
             _rigid.velocity = Vector2.zero;
+            _anim.SetBool("IsRun", false);
         }
         else
         {
             _rigid.velocity = Vector2.left * moveSpeed * Time.fixedDeltaTime;
+            _anim.SetBool("IsRun", true);
         }
     }
 
